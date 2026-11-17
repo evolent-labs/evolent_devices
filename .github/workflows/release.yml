@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+      - '!sdk-v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the version
+        run: |
+          version=$(sed -n "s/^version '\(.*\)'$/\1/p" fxmanifest.lua)
+
+          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
+            echo "The tag $GITHUB_REF_NAME does not match fxmanifest.lua version $version"
+            exit 1
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build the UI
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Write the changelog
+        run: |
+          previous=$(git describe --tags --abbrev=0 --exclude 'sdk-v*' "${GITHUB_REF_NAME}^" 2>/dev/null || true)
+
+          if [ -n "$previous" ]; then
+            range="${previous}..${GITHUB_REF_NAME}"
+          else
+            range="${GITHUB_REF_NAME}"
+          fi
+
+          {
+            echo "## Changes"
+            echo
+            git log "$range" --no-merges --pretty=format:'- %s (%h)'
+            echo
+
+            if [ -n "$previous" ]; then
+              echo
+              echo "**Full changelog**: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/${previous}...${GITHUB_REF_NAME}"
+            fi
+          } > CHANGELOG.md
+
+      - name: Package the resource
+        run: |
+          name=evolent_devices
+          mkdir -p "package/$name"
+          git archive "$GITHUB_REF_NAME" | tar -x -C "package/$name"
+          cd "package/$name"
+          rm -rf .github web .gitattributes .gitignore
+          find sdk -mindepth 1 -maxdepth 1 ! -name app.lua ! -name LICENSE -exec rm -rf {} +
+          mkdir -p web
+          cp -r "$GITHUB_WORKSPACE/web/build" web/build
+          cd ..
+          zip -qr "../$name.zip" "$name"
+
+      - name: Publish the release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          files: '*.zip'

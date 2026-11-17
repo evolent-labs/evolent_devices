@@ -1,0 +1,2 @@
+body.preview{background:radial-gradient(ellipse at 30% 18%,#1d1f27 0%,#0d0e13 62%,#07070a 100%)}
+.preview-closed{display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--muted)}

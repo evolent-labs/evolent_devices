@@ -1,0 +1,24 @@
+local TabletColours = {
+    { id = 'onyx', hex = '#15151b' },
+    { id = 'silver', hex = '#c6c6ce' },
+    { id = 'lime', hex = '#c3ff00' },
+    { id = 'midnight', hex = '#141a2e' },
+    { id = 'graphite', hex = '#4a4c55' },
+    { id = 'white', hex = '#ececef' },
+    { id = 'red', hex = '#a3212b' },
+    { id = 'blue', hex = '#2b5ea8' },
+    { id = 'rose', hex = '#d8a596' },
+    { id = 'gold', hex = '#cdb27c' },
+}
+
+function TabletColours.index(value)
+    local index = math.tointeger(tonumber(value))
+
+    if index and index >= 0 and index < #TabletColours then
+        return index
+    end
+
+    return 0
+end
+
+return TabletColours

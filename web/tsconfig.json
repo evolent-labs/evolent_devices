@@ -1,0 +1,40 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "types": [
+      "svelte",
+      "vite/client"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "$lib/*": [
+        "src/lib/*"
+      ],
+      "$components/*": [
+        "src/components/*"
+      ],
+      "$views/*": [
+        "src/views/*"
+      ],
+      "$os/*": [
+        "src/os/*"
+      ],
+      "$sdk/*": [
+        "../sdk/src/*"
+      ]
+    },
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "src/**/*",
+    "../sdk/src/**/*"
+  ]
+}

@@ -1,0 +1,47 @@
+name: Publish the SDK
+
+on:
+  push:
+    tags:
+      - 'sdk-v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Check the version
+        working-directory: sdk
+        run: |
+          version=$(node -p "require('./package.json').version")
+
+          if [ "sdk-v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "The tag $GITHUB_REF_NAME does not match sdk/package.json version $version"
+            exit 1
+          fi
+
+      - name: Build the SDK
+        working-directory: web
+        run: |
+          npm ci
+          npm run build:sdk
+          git diff --exit-code -- ../sdk/dist
+
+      - name: Publish
+        working-directory: sdk
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

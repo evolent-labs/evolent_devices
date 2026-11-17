@@ -1,0 +1,35 @@
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a}
+body{color:#e4e4e7;font-family:"Poppins",system-ui,sans-serif}
+.eos{position:absolute;top:0;left:0;transform-origin:top left;overflow:hidden;color:#e4e4e7;font-family:"Poppins",system-ui,sans-serif;font-size:14px;line-height:1.5;user-select:none;font-synthesis:none}
+.eos *{box-sizing:border-box}
+.eos p{margin:0}
+.eos button{font-family:"Poppins",system-ui,sans-serif}
+.eos button:focus-visible{outline:2px solid var(--accent-hover);outline-offset:2px}
+.eos.remote{pointer-events:none}
+.eos [hidden]{display:none!important}
+html.eos-drag iframe{pointer-events:none}
+.eos input::placeholder{color:#8b8b95}
+.eos .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.eos ::selection{background:var(--accent);color:#0a0a0f}
+.eos *::-webkit-scrollbar{width:10px;height:10px;background:transparent}
+.eos *::-webkit-scrollbar-thumb{background:#2a2a35;border:3px solid transparent;background-clip:padding-box;border-radius:10px;min-height:32px}
+.eos *::-webkit-scrollbar-thumb:hover{background-color:#52525b}
+.eos *::-webkit-scrollbar-button{display:none;width:0;height:0}
+
+@keyframes eos-boot{0%{width:0}55%{width:58%}100%{width:100%}}
+@keyframes eos-pop{0%{opacity:0;transform:translateY(14px) scale(.96)}100%{opacity:1;transform:none}}
+@keyframes eos-menu{0%{opacity:0;transform:translateY(6px) scale(.96)}100%{opacity:1;transform:none}}
+@keyframes eos-slide{0%{opacity:0;transform:translateX(32px)}100%{opacity:1;transform:none}}
+@keyframes eos-fade{0%{opacity:0}100%{opacity:1}}
+@keyframes eos-pop-out{to{opacity:0;transform:translateY(10px) scale(.97)}}
+@keyframes eos-slide-out{to{opacity:0;transform:translateX(24px)}}
+@keyframes eos-up{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:none}}
+@keyframes eos-logo{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:none}}
+@keyframes eos-spin{to{transform:rotate(360deg)}}
+@keyframes eos-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes eos-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+@keyframes eos-shake2{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.eos textarea{font-family:"Poppins",system-ui,sans-serif}
+.eos textarea::placeholder{color:#52525b}
+.eos .eos-wall{position:absolute;inset:0}
+.eos.still *,.eos.still *::before,.eos.still *::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important}

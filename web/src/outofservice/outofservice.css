@@ -1,0 +1,15 @@
+@font-face{font-family:"Poppins";src:url("/fonts/Poppins-Medium.woff2") format("woff2");font-weight:500}
+@font-face{font-family:"Poppins";src:url("/fonts/Poppins-SemiBold.woff2") format("woff2");font-weight:600}
+@font-face{font-family:"Poppins";src:url("/fonts/Poppins-ExtraBold.woff2") format("woff2");font-weight:800}
+:root{--base:#0a0a0f;--line:#262631;--text:#f4f4f5;--muted:#a1a1aa}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 120%,#16161f 0%,var(--base) 60%);color:var(--text);font-family:"Poppins",Arial,sans-serif;font-weight:500}
+.card{display:flex;align-items:center;gap:6vh;padding:6vh 8vh;border:2px solid var(--line);border-radius:3vh;background:#0f0f15cc}
+.mark{width:16vh;height:16vh;border-radius:50%;border:1.2vh solid var(--accent);position:relative;flex:none}
+.mark::after{content:"";position:absolute;left:50%;top:50%;width:1.2vh;height:10vh;background:var(--accent);transform:translate(-50%,-50%) rotate(45deg);border-radius:1vh}
+h1{margin-bottom:calc(var(--heading-pull) + (var(--title-lh) - 1) * .5em);font-size:12vh;font-weight:800;line-height:1;letter-spacing:.02em;text-transform:uppercase}
+p{font-size:4.4vh;color:var(--muted);line-height:var(--sub-lh)}
+.brand{margin-bottom:2vh;font-size:3.4vh;font-weight:600;letter-spacing:.3em;color:var(--accent)}
+#line{max-width:62vw}
+#dim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none}

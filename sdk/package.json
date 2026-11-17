@@ -1,0 +1,28 @@
+{
+  "name": "@evolent/os-app",
+  "version": "1.0.1",
+  "description": "Put a page into the Evolent OS on evolent_devices laptops, computers, tablets and terminals",
+  "keywords": ["fivem", "evolent", "evolent-devices", "nui"],
+  "homepage": "https://docs.evolent.dev/devices/Apps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evolent-labs/evolent_devices.git",
+    "directory": "sdk"
+  },
+  "bugs": "https://github.com/evolent-labs/evolent_devices/issues",
+  "type": "module",
+  "main": "dist/os-app.js",
+  "module": "dist/os-app.js",
+  "types": "dist/os-app.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/os-app.d.ts",
+      "import": "./dist/os-app.js"
+    }
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

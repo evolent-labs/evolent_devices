@@ -1,0 +1,42 @@
+local Config = require 'config.settings'
+
+Config.items = {
+    laptop = {
+        item = 'evolent_laptop',
+        serialPrefix = 'EVL',
+        enabled = true,
+        place = { mode = 'everyone' },
+        perPlayer = 1,
+        where = 'anywhere',
+        homeKeysOnly = true,
+        tableMin = 0.4,
+        tableMax = 1.4,
+        pickup = 'manage',
+        onRemove = 'return',
+        startAccess = { mode = 'everyone' },
+        startApps = {},
+    },
+    pc = {
+        item = 'evolent_pc',
+        serialPrefix = 'EVP',
+        enabled = true,
+        place = { mode = 'everyone' },
+        perPlayer = 1,
+        where = 'anywhere',
+        homeKeysOnly = true,
+        tableMin = 0.4,
+        tableMax = 1.4,
+        pickup = 'manage',
+        onRemove = 'return',
+        startAccess = { mode = 'everyone' },
+        startApps = {},
+    },
+    tablet = {
+        item = 'evolent_tablet',
+        serialPrefix = 'EVT',
+        enabled = true,
+        use = { mode = 'everyone' },
+        apps = { order = {}, entries = {} },
+        blocked = {},
+    },
+}
