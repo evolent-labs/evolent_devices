@@ -12,6 +12,7 @@ local V = DeviceRules.vector
 local ROOM_CHECK_MS = 250
 local STAND_RADIUS, STAND_KNEE = 0.25, 0.3
 local HELP_KEY, WALK_KEY = 74, 47
+local WALK_BLOCKED = { 24, 25, 140, 141, 142, 177, 200, 257, 263, 322 }
 local LEVEL_REACH, RAY_REACH = 80.0, 80.0
 local VIEW_UP, VIEW_BACK, VIEW_MARGIN, VIEW_MIN = 1.2, 1.8, 0.2, 0.4
 local WALK_MS = 100
@@ -686,12 +687,16 @@ local function walkCloser(session, target)
     local resume, nextAt = false, 0
 
     while PlacementCamera.active == session and not IsEntityDead(cache.ped) do
-        if IsControlJustReleased(0, 191) or IsControlJustReleased(0, 201) then
+        for _, control in ipairs(WALK_BLOCKED) do
+            DisableControlAction(0, control, true)
+        end
+
+        if PlacementSteps.released(PlacementSteps.PLACE) then
             resume = true
             break
         end
 
-        if IsControlJustReleased(0, 73) then break end
+        if PlacementSteps.released(PlacementSteps.STOP) then break end
 
         local now = GetGameTimer()
 

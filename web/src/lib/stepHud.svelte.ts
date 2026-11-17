@@ -316,6 +316,9 @@ export function readouts(s: typeof ph): Readout[] {
   return out;
 }
 
+const placeKeys = (click = true) => (click ? [t('ui_key_enter'), t('ui_key_click')] : [t('ui_key_enter')]);
+const stopKeys = () => [t('ui_key_backspace'), t('ui_key_right_click')];
+
 const WHEEL_LABEL: Record<Adjust, string> = { rotate: 'ui_placement_rotate', radius: 'ui_placement_radius', size: 'ui_placement_size', height: 'ui_placement_height' };
 
 export function hints(s: typeof ph): Hint[] {
@@ -324,13 +327,13 @@ export function hints(s: typeof ph): Hint[] {
     return [
       { keys: [t('ui_key_mouse')], label: t('ui_placement_look_table') },
       { keys: [t('ui_key_wheel')], label: t('ui_placement_turn') },
-      { keys: [t('ui_key_enter')], label: t('ui_placement_place'), go: true, off: !s.valid },
+      { keys: placeKeys(), label: t('ui_placement_place'), go: true, off: !s.valid },
     ];
   }
   if (s.walking) {
     return [
-      { keys: [t('ui_key_enter')], label: t('ui_placement_back'), go: true },
-      { keys: ['X'], label: t('ui_placement_stop') },
+      { keys: placeKeys(), label: t('ui_placement_back'), go: true },
+      { keys: stopKeys(), label: t('ui_placement_stop') },
     ];
   }
   const out: Hint[] = [{ keys: ['W', 'A', 'S', 'D'], label: t('ui_placement_move') }];
@@ -342,7 +345,7 @@ export function hints(s: typeof ph): Hint[] {
   else if (has(s, 'height')) out.push({ keys: ['F'], label: t('ui_placement_to_surface') });
   if (k.zone) out.push({ keys: ['Z'], label: t(s.zone ? 'ui_placement_use_marker' : 'ui_placement_use_zone') });
   if (k.skip) out.push({ keys: [t('ui_key_backspace')], label: t(k.skip === 'done' ? 'ui_placement_done' : 'ui_placement_skip') });
-  out.push({ keys: [t('ui_key_enter')], label: t('ui_placement_place'), go: true, off: !s.valid });
+  out.push({ keys: placeKeys(k.click), label: t('ui_placement_place'), go: true, off: !s.valid });
   return out;
 }
 
@@ -397,10 +400,9 @@ export function rail(s: typeof ph): RailGroup[] {
   groups.push({
     title: t('ui_placement_group_actions'),
     rows: [
-      { label: t('ui_placement_place'), keys: [t('ui_key_enter')] },
-      ...(k.click ? [{ label: t('ui_placement_confirm'), keys: [t('ui_key_click')] }] : []),
+      { label: t('ui_placement_place'), keys: placeKeys(k.click) },
       ...(k.walk ? [{ label: t('ui_placement_walk'), keys: ['G'] }] : []),
-      { label: t('ui_placement_stop'), keys: [t('ui_key_esc')] },
+      { label: t('ui_placement_stop'), keys: stopKeys() },
     ],
   });
   return groups;

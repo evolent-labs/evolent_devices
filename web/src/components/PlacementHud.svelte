@@ -88,7 +88,7 @@
       {/if}
     </div>
     <div class="ph-corner">
-      <span class="ph-hint">{@render keyset([t('ui_key_esc')], '')}<span>{t('ui_placement_corner_stop')}</span></span>
+      <span class="ph-hint">{@render keyset([t('ui_key_backspace'), t('ui_key_right_click')], '')}<span>{t('ui_placement_corner_stop')}</span></span>
       {#if ph.mode === 'camera'}
         <span class="ph-hint">
           {@render keyset(['H'], 'hi')}

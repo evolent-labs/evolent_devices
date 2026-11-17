@@ -12,7 +12,6 @@ local PlacementCamera = require 'client.placement'
 local ItemAim = { active = nil }
 
 local WHEEL_UP, WHEEL_DOWN, FINE_KEY = 15, 14, 19
-local CONFIRM_KEYS, CANCEL_KEYS = { 191, 201 }, { 177, 194, 200, 202, 322 }
 
 local BLOCKED = {
     14,
@@ -74,14 +73,6 @@ local function probe(from, to, ignore)
     end
 
     return nil
-end
-
-local function anyPressed(keys)
-    for _, key in ipairs(keys) do
-        if IsDisabledControlJustPressed(0, key) then return true end
-    end
-
-    return false
 end
 
 function ItemAim.faceHeading(from, point)
@@ -319,11 +310,11 @@ function ItemAim.tick(session)
     draw(session)
     hud(session, GetGameTimer())
 
-    if anyPressed(CANCEL_KEYS) then
+    if PlacementSteps.pressed(PlacementSteps.STOP) then
         return 'cancel'
     end
 
-    if anyPressed(CONFIRM_KEYS) then
+    if PlacementSteps.pressed(PlacementSteps.PLACE) then
         if session.valid then
             return 'confirm'
         end

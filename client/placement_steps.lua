@@ -1,25 +1,35 @@
 local PlacementSteps = {}
 
-local ENTER, STOP = { 191, 201 }, { 200, 322 }
+PlacementSteps.PLACE = { 191, 201, 24 }
+PlacementSteps.STOP = { 25, 177, 194, 200, 202, 322 }
+
 local BACK, CLICK, CTRL, FINE, SURFACE = 194, 24, 36, 19, 23
 local WHEEL_UP, WHEEL_DOWN, RAISE, LOWER = 15, 14, 10, 11
 
-local function pressed(keys)
+function PlacementSteps.pressed(keys, skip)
     for _, key in ipairs(keys) do
-        if IsDisabledControlJustPressed(0, key) then return true end
+        if key ~= skip and IsDisabledControlJustPressed(0, key) then return true end
+    end
+
+    return false
+end
+
+function PlacementSteps.released(keys)
+    for _, key in ipairs(keys) do
+        if IsControlJustReleased(0, key) or IsDisabledControlJustReleased(0, key) then return true end
     end
 
     return false
 end
 
 function PlacementSteps.input(session)
-    if pressed(STOP) then return 'cancel' end
-
-    if IsDisabledControlJustPressed(0, BACK) then
+    if session.skip and IsDisabledControlJustPressed(0, BACK) then
         return session.skip
     end
 
-    if pressed(ENTER) or (session.click and IsDisabledControlJustPressed(0, CLICK)) then
+    if PlacementSteps.pressed(PlacementSteps.STOP) then return 'cancel' end
+
+    if PlacementSteps.pressed(PlacementSteps.PLACE, not session.click and CLICK or nil) then
         return session.valid and 'confirm' or 'blocked'
     end
 
