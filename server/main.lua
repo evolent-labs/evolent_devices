@@ -116,7 +116,7 @@ AddEventHandler('onResourceStop', function(resource)
     end
 end)
 
-CreateThread(function()
+local function start()
     Bridge.validate('server')
     Bridge.assertReady()
     MySQL.ready.await()
@@ -145,7 +145,7 @@ CreateThread(function()
             advice
         ))
 
-        return
+        return false
     end
 
     local general = Settings.defaults().general
@@ -242,6 +242,22 @@ CreateThread(function()
     for _, source in ipairs(People.online()) do
         Spaces.refresh(source)
         Access.push(source)
+    end
+
+    return true
+end
+
+CreateThread(function()
+    local ok, started = xpcall(start, debug.traceback)
+
+    if not ok or not started then
+        Registry.failed = true
+
+        if not ok then
+            Util.log('Could not start: ' .. tostring(started))
+        end
+
+        return
     end
 
     local cycle = 0

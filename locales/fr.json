@@ -6,6 +6,7 @@
   "command_tablet_action_help": "Facultatif : colour ou close",
   "admin_no_access": "Tu n'as pas accès au panneau des appareils.",
   "admin_not_ready": "Le panneau des appareils démarre encore. Réessaie dans un instant.",
+  "admin_failed": "Evolent Devices n'a pas pu démarrer. La console du serveur indique pourquoi.",
   "kind_laptop": "PC portable",
   "kind_pc": "Ordinateur",
   "kind_terminal": "Borne",

@@ -6,6 +6,7 @@
   "command_tablet_action_help": "Opcional: colour ou close",
   "admin_no_access": "Você não tem acesso ao painel de dispositivos.",
   "admin_not_ready": "O painel de dispositivos ainda está iniciando. Tente de novo em instantes.",
+  "admin_failed": "O Evolent Devices não conseguiu iniciar. O console do servidor diz o motivo.",
   "kind_laptop": "Notebook",
   "kind_pc": "Computador",
   "kind_terminal": "Terminal",

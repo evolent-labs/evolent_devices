@@ -577,7 +577,13 @@ RegisterCommand(Config.commands.admin, function(source, args)
     end
 
     if not Registry.ready then
-        Bridge.notify(source, locale('admin_not_ready'), 'error')
+        local text = locale(Registry.failed and 'admin_failed' or 'admin_not_ready')
+
+        if Bridge.notify then
+            Bridge.notify(source, text, 'error')
+        else
+            TriggerClientEvent('ox_lib:notify', source, { title = locale('brand'), description = text, type = 'error' })
+        end
 
         return
     end
