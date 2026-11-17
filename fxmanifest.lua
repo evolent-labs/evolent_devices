@@ -5,7 +5,7 @@ use_experimental_fxv2_oal 'yes'
 
 author 'Evolent Labs'
 description 'Evolent Devices: laptops, computers, terminals and tablets, their admin panel and the app API'
-version '1.0.0'
+version '1.0.1'
 
 dependencies { 'ox_lib', 'oxmysql', '/onesync' }
 
