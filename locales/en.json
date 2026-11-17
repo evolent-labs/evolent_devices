@@ -1935,7 +1935,7 @@
   "ui_brand_match_garage": "Same as the garage",
   "ui_brand_match_help": "Copies the colour once. A later change there does not change it here.",
   "ui_brand_preview": "Preview",
-  "ui_brand_sample_button": "Save changes",
+  "ui_brand_sample_button": "Example button",
   "ui_brand_logo_label": "Logo",
   "ui_brand_logo_help": "Shown on the start screen, the start button and in About. PNG, JPG or WebP; it is made smaller for you.",
   "ui_brand_choose": "Choose a picture",
