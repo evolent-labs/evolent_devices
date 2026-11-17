@@ -196,7 +196,7 @@ Scripts can also send notifications, spawn devices for a mission, lend the table
 
 ### Quick start
 
-1. Download the latest version from [Releases](https://github.com/evolent-labs/evolent_devices/releases/latest) and put it in your `resources` folder. The release includes the built UI. A clone of the repository does not: build it with `npm install` and `npm run build` in `web`.
+1. Download the latest version from [Releases](https://github.com/evolent-labs/evolent_devices/releases/latest) and put it in your `resources` folder. The release includes the built UI. A clone of the repository does not: build it with [Bun](https://bun.sh): `bun install` and `bun run build` in `web`.
 2. Add the laptop, computer and tablet items to your inventory. The lines are in the [documentation](https://docs.evolent.dev/devices#add-the-items).
 3. Add this to your `server.cfg`, after `ox_lib`, `oxmysql`, your framework and your inventory:
 
@@ -223,7 +223,7 @@ English, Spanish, French and Portuguese (Brazil) are included, through ox_lib lo
 
 ## Development
 
-`web/` is Svelte 5, TypeScript and Vite, built into `web/build`, the only part of `web/` the server needs. In `web`: `npm install` once, `npm run check` for the type check, `npm run build` to write `web/build`, `npm run build:sdk` for `sdk/dist`, and `npm run dev` for a browser preview with sample data.
+`web/` is Svelte 5, TypeScript and Vite, built with [Bun](https://bun.sh) into `web/build`, the only part of `web/` the server needs. In `web`: `bun install` once, `bun run check` for the type check, `bun run build` to write `web/build`, `bun run build:sdk` for `sdk/dist`, and `bun run dev` for a browser preview with sample data.
 
 ## Discord
 

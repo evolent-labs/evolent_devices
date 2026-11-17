@@ -5,7 +5,7 @@ The library an app page bundles to run inside the Evolent OS of [Evolent Devices
 ## Install
 
 ```bash
-npm install @evolent/os-app
+bun add @evolent/os-app
 ```
 
 ## Use
@@ -43,4 +43,4 @@ The message protocol is in [`sdk/src/protocol.ts`](https://github.com/evolent-la
 
 ## Building
 
-In `evolent_devices/web`: `npm run build:sdk` writes `dist/os-app.js`, `dist/os-app.iife.js` and the types in `dist/os-app.d.ts`.
+In `evolent_devices/web`: `bun run build:sdk` writes `dist/os-app.js`, `dist/os-app.iife.js` and the types in `dist/os-app.d.ts`.
